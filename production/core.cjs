@@ -10,6 +10,9 @@ function parseScript(md){
  return {text,segments,directions:clean.slice(0,match.index)};
 }
 function validateInput(input){
+ if(input.videoDescription!=null&&typeof input.videoDescription!=='string')throw Error('视频风格描述须为文字');
+ const videoDescription=(input.videoDescription||'').trim();
+ if(videoDescription.length>2000)throw Error('视频风格描述请控制在2000字以内');
  if(!['vox','index','edge','existing'].includes(input.model))throw Error('请选择支持的配音方式');
  for(const key of ['scriptPath','materialPath'])if(typeof input[key]!=='string'||!path.win32.isAbsolute(input[key])||input[key].startsWith('\\\\'))throw Error('请选择本机绝对路径');
  if(input.extraMaterialPath&&(!path.win32.isAbsolute(input.extraMaterialPath)||input.extraMaterialPath.startsWith('\\\\')))throw Error('额外参考素材请选择本机绝对路径');
@@ -17,7 +20,7 @@ function validateInput(input){
  if(input.model==='index'&&!input.referencePath)throw Error('IndexTTS 需要参考音频');
  if(input.model==='existing'&&!input.audioPath)throw Error('请选择已有配音');
  for(const key of ['referencePath','audioPath'])if(input[key]&&(!path.win32.isAbsolute(input[key])||input[key].startsWith('\\\\')))throw Error('音频请选择本机文件');
- return {...input,title:String(input.title||'新一期').slice(0,60),aspect:['portrait','landscape','auto'].includes(input.aspect)?input.aspect:'auto'};
+ return {...input,videoDescription,title:String(input.title||'新一期').slice(0,60),aspect:['portrait','landscape','auto'].includes(input.aspect)?input.aspect:'auto'};
 }
 function validatePlan(plan,media,duration){
  if(!Array.isArray(plan.shots)||!plan.shots.length||plan.shots.length>300)throw Error('AI 未返回有效镜头');

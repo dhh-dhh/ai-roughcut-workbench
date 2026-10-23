@@ -1,4 +1,5 @@
 {
+  "powershell": "pwsh.exe",
   "outputRoot": "D:/AI-Roughcut/output",
   "python": "D:/AI-Roughcut/.venv/Scripts/python.exe",
   "ffmpeg": "D:/Tools/ffmpeg/bin/ffmpeg.exe",

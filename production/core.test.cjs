@@ -26,3 +26,11 @@ test('mixed image and video film is accepted by OpenFilm',async(t)=>{
  assert.match(html,/<\/video>/);
  assert.doesNotMatch(html,/<\/img>/);
 });
+
+test('video description is optional, trimmed and bounded',()=>{
+ const input={model:'vox',scriptPath:'E:/script.md',materialPath:'E:/media'};
+ assert.equal(validateInput(input).videoDescription,'');
+ assert.equal(validateInput({...input,videoDescription:'  节奏轻快，重点展示操作  '}).videoDescription,'节奏轻快，重点展示操作');
+ assert.throws(()=>validateInput({...input,videoDescription:{}}),/视频风格/);
+ assert.throws(()=>validateInput({...input,videoDescription:'字'.repeat(2001)}),/2000/);
+});

@@ -1,17 +1,18 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI创趣工坊 · 一键初剪</title><link rel="stylesheet" href="/production.css"></head><body>
-<main><header><a href="/">← 一键初剪工作台</a><span>AI 创趣工坊 / VIDEO STUDIO</span></header>
-<div class="hero"><h1>选好素材，开始制作。</h1><p>自动配音、对齐字幕、AI 编排，生成可继续修改的 OpenFilm 初剪。</p></div>
-<div class="layout"><form id="form"><section><h2>本期内容</h2><label>本期名称<input name="title" required placeholder="例如：第五期 · 我的新工具" maxlength="60"></label>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI创趣工坊 · 一键初剪</title><link rel="stylesheet" href="/production.css?v=guided-b"></head><body>
+<main><header><a href="/">← 语音工作台</a><span>AI 创趣工坊 / VIDEO STUDIO</span></header>
+<div class="hero"><h1>一次，只专注一个步骤。</h1><p>自动配音、对齐字幕、AI 编排，生成可继续修改的 OpenFilm 初剪。</p></div>
+<div class="layout"><nav class="step-nav" aria-label="制作步骤"><p>新建一期</p><button type="button" data-step="0" aria-current="step"><b>1</b> 本期素材</button><button type="button" data-step="1"><b>2</b> 声音设定</button><p class="step-help">先选内容，再调声音。<br>切换步骤会保留输入。</p></nav><form id="form"><section data-step-panel="0"><h2>本期内容</h2><label>本期名称<input name="title" required placeholder="例如：第五期 · 我的新工具" maxlength="60"></label>
 <label>口播 Markdown <span>朗读模块2 · 模块1用于画面参考</span><div class="pick"><input name="scriptPath" required placeholder="选择或粘贴 .md 的完整路径"><button type="button" data-pick="scriptPath" data-kind="script">选择文案</button></div></label>
 <label>本期素材文件夹 <span>视频和图片，最多80个文件</span><div class="pick"><input name="materialPath" required placeholder="选择仅包含本期素材的文件夹"><button type="button" data-pick="materialPath" data-kind="folder">选择文件夹</button></div></label>
 <label>额外参考素材文件夹 <span>选填 · AI 按需选用视频和图片，也可以完全不用</span><div class="pick"><input name="extraMaterialPath" placeholder="可留空；与主素材合计最多80个文件"><button type="button" data-pick="extraMaterialPath" data-kind="folder">选择参考文件夹</button></div></label>
+<label>视频风格描述 <span>选填 · 指导镜头选择、剪辑节奏与重点文字。留空使用默认规则；字幕字体与颜色沿用固定模板。</span><textarea name="videoDescription" rows="4" maxlength="2000" placeholder="例如：科技创作者分享风格，节奏轻快但不碎，优先展示操作过程，结果处停留稍久，少用文字卡。"></textarea></label>
 <label>视频画幅<select name="aspect"><option value="auto">跟随第一个素材</option><option value="landscape">横屏 16:9</option><option value="portrait">竖屏 9:16</option></select></label></section>
-<section><h2>配音方式</h2><label>模型<select name="model" id="model"><option value="vox">VoxCPM2 · 声音设计 / 参考音色</option><option value="index">IndexTTS 2.5 · 参考音色</option><option value="edge">edge-tts · 在线预设声音</option><option value="existing">使用已有配音（也支持 GPT-SoVITS 输出）</option></select></label>
+<section data-step-panel="1" hidden><h2>声音设定</h2><label>模型<select name="model" id="model"><option value="vox">VoxCPM2 · 声音设计 / 参考音色</option><option value="index">IndexTTS 2.5 · 参考音色</option><option value="edge">edge-tts · 在线预设声音</option><option value="existing">使用已有配音（也支持 GPT-SoVITS 输出）</option></select></label>
 <div id="reference"><label>参考录音 <span>IndexTTS 必填，VoxCPM2 可选</span><div class="pick"><input name="referencePath" placeholder="选择你有权使用的参考音频"><button type="button" data-pick="referencePath" data-kind="audio">选择音频</button></div></label><label>参考录音对应文字 <span>VoxCPM2 可选</span><textarea name="referenceText" rows="2" placeholder="参考音频里实际说了什么"></textarea></label></div>
-<label id="voice-description">声音描述 <span>仅用于无参考录音或声音控制</span><textarea name="voiceDescription" rows="3" placeholder="例如：自然清晰的中文男声，讲解时平稳、有交流感"></textarea></label>
+<label id="voice-description">声音描述 <span>仅用于无参考录音或声音控制</span><textarea name="voiceDescription" rows="5">年轻成年男声，标准普通话，中音略偏低，清亮、温暖，有适度厚度。像一位热爱动手的科技创作者，面对镜头分享刚做出来的有趣工具，亲切、自信，有好奇心。语速中等偏快，吐字清楚，句尾干净；短句之间自然换气，关键结论前稍作停顿。开场带一点兴奋和探索感，讲操作时平稳清晰，展示结果时语调轻微上扬，收尾真诚放松。整体有精神但不亢奋，不用新闻播报腔、广告推销腔，不刻意压低嗓音，不夸张喊叫。</textarea></label>
 <label id="edge-voice" hidden>预设声音<select name="voice"><option>云希·男声</option><option>云健·男声</option><option>晓晓·女声</option><option>晓伊·女声</option></select></label>
 <label id="existing-audio" hidden>已有配音<div class="pick"><input name="audioPath" placeholder="需与模块2正文一致"><button type="button" data-pick="audioPath" data-kind="audio">选择音频</button></div></label>
-</section><p class="notice">AI 剪辑使用本机已登录的 Codex，会将文案、素材描述和代表画面发送给其服务。配音与字幕对齐在本机完成（edge-tts 使用微软在线语音）。不自动发布，不额外生成付费素材。</p><button id="submit" class="primary" type="submit">生成初剪 →</button><p id="feedback" role="status"></p></form>
-<aside><section><h2>制作任务</h2><p class="hint">生成过程中可以离开此页面。工作台服务需保持运行。失败后可从已完成阶段继续。</p><div id="jobs"><p>正在读取任务…</p></div></section></aside></div></main>
+</section><p class="notice">AI 剪辑使用本机已登录的 Codex，会将文案、素材描述和代表画面发送给其服务。配音与字幕对齐在本机完成（edge-tts 使用微软在线语音）。不自动发布，不额外生成付费素材。</p><div class="form-actions"><button id="previous-step" type="button" hidden>上一步</button><button id="next-step" class="primary" type="button">下一步：声音设定</button><button id="submit" class="primary" type="submit" hidden>生成初剪</button></div><p id="feedback" role="status"></p></form>
+<aside><section><h2>制作任务</h2><p class="hint">在这里查看制作进度与成片。失败的任务可以从已完成阶段继续。</p><div id="jobs"><p>正在读取任务…</p></div></section></aside></div></main>
 <dialog id="viewer"><button type="button" id="close-view">关闭</button><video controls id="video"></video><pre id="log"></pre></dialog>
-<script>window.productionToken='TOKEN_PLACEHOLDER';</script><script src="/production.js"></script></body></html>
+<script>window.productionToken='TOKEN_PLACEHOLDER';</script><script src="/production.js?v=guided-b"></script></body></html>

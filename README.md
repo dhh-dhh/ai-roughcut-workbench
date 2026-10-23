@@ -4,7 +4,7 @@
 
 这是 **AI创趣工坊** 的工作流整合项目。底层配音、语音对齐与渲染由下方开源项目提供，本项目贡献网页、任务调度、输入校验、分段缓存、字幕转换和 OpenFilm 工程生成。**输出是需要人工检查的初剪，不是自动发布的最终作品。**
 
-界面采用黑色与炭灰表面、柔白主操作和细分隔线。设计约定见 [DESIGN.md](DESIGN.md)。
+界面采用浅色分步布局：左侧切换本期素材与声音设定，中间编辑，右侧查看真实制作任务。设计约定见 [DESIGN.md](DESIGN.md)。
 
 ## 能做什么
 
@@ -23,7 +23,7 @@
 
 ## 安装与启动
 
-1. 安装 Node.js、Python、带 `subtitles`/libass 与 H.264 编码支持的现代 FFmpeg，以及 Codex CLI，完成你自己的 Codex 登录。安装方式以各上游官方说明为准。
+1. 安装 PowerShell 7（`pwsh.exe`，原生选择窗口需要现代 .NET Windows Forms）、Node.js、Python、带 `subtitles`/libass 与 H.264 编码支持的现代 FFmpeg，以及 Codex CLI，完成你自己的 Codex 登录。安装方式以各上游官方说明为准。
 2. 克隆本仓库，运行 `npm install` 安装 OpenFilm 0.2.5。按 OpenFilm 官方说明准备 Playwright 浏览器；已有桌面安装可在配置中覆盖 `openfilm` 为其 `bin/openfilm.mjs`，并设置 `browsers` 为浏览器目录。
 3. 为适配器建立独立 Python 环境，再安装 `requirements.txt`。PyTorch/CUDA 需按机器与模型要求安装；VoxCPM/IndexTTS 各自依赖由上游管理，不建议混装一个环境。
 4. 准备 FunASR 的本地时间戳模型 `iic/speech_timestamp_prediction-v1-16k-offline`；把完整模型目录填入 `alignModel`。运行时使用本地模型，不自动下载。
@@ -79,3 +79,10 @@ python production/audio_test.py
 测试覆盖文案解析、时间线校验、字幕格式、取消、状态恢复和可选素材去重。完整生成还需本地模型、Codex账号和OpenFilm渲染环境。
 
 本仓库原创代码采用 [MIT](LICENSE)。第三方项目、模型权重和在线服务分别遵循其自己的许可和条款。
+
+## 本次更新
+
+- 文件/文件夹窗口支持当前路径定位、置顶显示；再次点击可关闭旧窗口后重开。PowerShell 7 的路径可通过 config.local.json 的 powershell 配置。
+- 新增可选视频风格描述（最多2000字），指导镜头选择、节奏与重点文字；留空使用原规则。背景、字幕字体颜色和转场仍由现有模板决定。
+- 切换步骤保留输入；错误详情折叠；移动端自动改为纵向布局。
+- 默认参考音频由用户自行选择，公共仓库不包含作者音频或本机路径。

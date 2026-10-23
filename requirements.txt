@@ -1,0 +1,9 @@
+# Model servers have their own environments; follow their upstream instructions.
+gradio_client>=1.0,<3
+funasr==1.4.16
+modelscope
+soundfile
+Pillow
+# Optional edge-tts Gradio adapter (integrations/edge_app.py)
+edge-tts
+gradio>=5,<7

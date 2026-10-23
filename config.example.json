@@ -1,0 +1,15 @@
+{
+  "outputRoot": "D:/AI-Roughcut/output",
+  "python": "D:/AI-Roughcut/.venv/Scripts/python.exe",
+  "ffmpeg": "D:/Tools/ffmpeg/bin/ffmpeg.exe",
+  "ffprobe": "D:/Tools/ffmpeg/bin/ffprobe.exe",
+  "alignModel": "D:/Models/speech_timestamp_prediction-v1-16k-offline",
+  "codex": "codex.exe",
+  "desktop": "",
+  "browsers": "",
+  "engines": {
+    "vox": {"port": 8808, "directory": "", "launcher": "start.ps1"},
+    "index": {"port": 7860, "directory": "", "launcher": "start.ps1"},
+    "edge": {"port": 7863, "directory": "", "launcher": "start.ps1"}
+  }
+}

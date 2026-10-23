@@ -1,0 +1,3 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),A=require('./adapters.cjs');
+test('English words remain separated in captions',()=>{const cues=[{start:0,end:1,text:'hello world',words:[{start:0,text:'hello'},{start:.5,text:'world'}]}];assert.match(A.vtt(cues),/hello <00:00:00.500>world/);assert.match(A.srt(cues),/00:00:00,000 --> 00:00:01,000\nhello world/)});
+test('abort waits for child exit',async()=>{const c=new AbortController();const promise=A.run(process.execPath,['-e','setInterval(()=>{},1000)'],{signal:c.signal});setTimeout(()=>c.abort(),200);await assert.rejects(promise,/取消/)});

@@ -1,0 +1,17 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI创趣工坊 · 一键初剪</title><link rel="stylesheet" href="/production.css"></head><body>
+<main><header><a href="/">← 一键初剪工作台</a><span>AI 创趣工坊 / VIDEO STUDIO</span></header>
+<div class="hero"><span class="eyebrow">从文案到第一版视频</span><h1>选好素材，开始制作。</h1><p>自动配音、对齐字幕、AI 编排，生成可继续修改的 OpenFilm 初剪。</p></div>
+<div class="layout"><form id="form"><section><h2>01　本期内容</h2><label>本期名称<input name="title" required placeholder="例如：第五期 · 我的新工具" maxlength="60"></label>
+<label>口播 Markdown <span>朗读模块2 · 模块1用于画面参考</span><div class="pick"><input name="scriptPath" required placeholder="选择或粘贴 .md 的完整路径"><button type="button" data-pick="scriptPath" data-kind="script">选择文案</button></div></label>
+<label>本期素材文件夹 <span>视频和图片，最多80个文件</span><div class="pick"><input name="materialPath" required placeholder="选择仅包含本期素材的文件夹"><button type="button" data-pick="materialPath" data-kind="folder">选择文件夹</button></div></label>
+<label>额外参考素材文件夹 <span>选填 · AI 按需选用视频和图片，也可以完全不用</span><div class="pick"><input name="extraMaterialPath" placeholder="可留空；与主素材合计最多80个文件"><button type="button" data-pick="extraMaterialPath" data-kind="folder">选择参考文件夹</button></div></label>
+<label>视频画幅<select name="aspect"><option value="auto">跟随第一个素材</option><option value="landscape">横屏 16:9</option><option value="portrait">竖屏 9:16</option></select></label></section>
+<section><h2>02　配音方式</h2><label>模型<select name="model" id="model"><option value="vox">VoxCPM2 · 声音设计 / 参考音色</option><option value="index">IndexTTS 2.5 · 参考音色</option><option value="edge">edge-tts · 在线预设声音</option><option value="existing">使用已有配音（也支持 GPT-SoVITS 输出）</option></select></label>
+<div id="reference"><label>参考录音 <span>IndexTTS 必填，VoxCPM2 可选</span><div class="pick"><input name="referencePath" placeholder="选择你有权使用的参考音频"><button type="button" data-pick="referencePath" data-kind="audio">选择音频</button></div></label><label>参考录音对应文字 <span>VoxCPM2 可选</span><textarea name="referenceText" rows="2" placeholder="参考音频里实际说了什么"></textarea></label></div>
+<label id="voice-description">声音描述 <span>仅用于无参考录音或声音控制</span><textarea name="voiceDescription" rows="3" placeholder="例如：自然清晰的中文男声，讲解时平稳、有交流感"></textarea></label>
+<label id="edge-voice" hidden>预设声音<select name="voice"><option>云希·男声</option><option>云健·男声</option><option>晓晓·女声</option><option>晓伊·女声</option></select></label>
+<label id="existing-audio" hidden>已有配音<div class="pick"><input name="audioPath" placeholder="需与模块2正文一致"><button type="button" data-pick="audioPath" data-kind="audio">选择音频</button></div></label>
+</section><p class="notice">AI 剪辑使用本机已登录的 Codex，会将文案、素材描述和代表画面发送给其服务。配音与字幕对齐在本机完成（edge-tts 使用微软在线语音）。不自动发布，不额外生成付费素材。</p><button id="submit" class="primary" type="submit">生成初剪 →</button><p id="feedback" role="status"></p></form>
+<aside><section><h2>制作任务</h2><p class="hint">生成过程中可以离开此页面。工作台服务需保持运行。失败后可从已完成阶段继续。</p><div id="jobs"><p>正在读取任务…</p></div></section></aside></div></main>
+<dialog id="viewer"><button type="button" id="close-view">关闭</button><video controls id="video"></video><pre id="log"></pre></dialog>
+<script>window.productionToken='TOKEN_PLACEHOLDER';</script><script src="/production.js"></script></body></html>

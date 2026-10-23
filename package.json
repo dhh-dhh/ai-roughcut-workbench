@@ -1,0 +1,10 @@
+{
+  "name": "ai-roughcut-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI创趣工坊：文案、素材、配音到可编辑 OpenFilm 初剪的本地工作台",
+  "license": "MIT",
+  "engines": {"node": ">=22.2"},
+  "scripts": {"start": "node server.cjs", "test": "node --test production/*.test.cjs", "check": "node scripts/check.cjs"},
+  "dependencies": {"openfilm": "0.2.5"}
+}
